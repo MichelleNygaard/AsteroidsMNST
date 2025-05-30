@@ -1,4 +1,4 @@
-package dk.sdu.cbse.common.entattributes;
+package dk.sdu.cbse.common.data.entattributes;
 
 import dk.sdu.cbse.common.data.Entity;
 import dk.sdu.cbse.common.data.GameData;
@@ -48,7 +48,7 @@ public class EntMovement implements EntAttribute {
     public void setRight(boolean right) {
         this.right = right;
     }
-    public void setUp() {
+    public void setUp(boolean up) {
         this.up = up;
     }
 

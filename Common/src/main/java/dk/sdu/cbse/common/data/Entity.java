@@ -1,6 +1,6 @@
 package dk.sdu.cbse.common.data;
 
-import dk.sdu.cbse.common.entattributes.EntAttribute;
+import dk.sdu.cbse.common.data.entattributes.EntAttribute;
 
 import java.io.Serializable;
 import java.util.Map;

@@ -6,9 +6,12 @@ import dk.sdu.cbse.common.data.GameData;
 import dk.sdu.cbse.common.data.World;
 import dk.sdu.cbse.common.services.IGamePluginService;
 import java.util.Random;
+import dk.sdu.cbse.common.data.entattributes.HPAttribute;
+import dk.sdu.cbse.common.data.entattributes.EntMovement;
+import dk.sdu.cbse.common.data.entattributes.EntPosition;
+
 
 public class AstPlugin implements IGamePluginService {
-    private Random random = new Random();
 
     @Override
     public void start(GameData gameData, World world) {
@@ -32,6 +35,9 @@ public class AstPlugin implements IGamePluginService {
 
         //Set the size of asteroids
         asteroid.setRadius(20);
+        asteroid.add(new EntMovement(0, speed, speed, 0));
+        asteroid.add(new EntPosition(30, 30, radians));
+        asteroid.add(new HPAttribute(3));
         return asteroid;
     }
 }

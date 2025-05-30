@@ -1,4 +1,4 @@
-package dk.sdu.cbse.common.entattributes;
+package dk.sdu.cbse.common.data.entattributes;
 
 import dk.sdu.cbse.common.data.Entity;
 import dk.sdu.cbse.common.data.GameData;
