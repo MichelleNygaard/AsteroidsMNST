@@ -1,7 +1,5 @@
 package dk.sdu.cbse;
 
-import dk.sdu.cbse.asteroids.AstSplitterImpl;
-import dk.sdu.cbse.collisionsys.CollisionDetector;
 import dk.sdu.cbse.common.data.Entity;
 import dk.sdu.cbse.common.data.GameData;
 import dk.sdu.cbse.common.data.GameKeys;
@@ -71,23 +69,6 @@ public class App extends Application {
 
         });
 
-        // Load and inject the AsteroidsSplitter using ServiceLoader
-        CollisionDetector collisionDetector = null;
-        for (IPostEntityProcessingService postProcessor : getPostEntityProcessingServices()) {
-            if (postProcessor instanceof CollisionDetector) {
-                collisionDetector = (CollisionDetector) postProcessor;
-                break;
-            }
-        }
-
-        ServiceLoader<dk.sdu.cbse.common.asteroids.IAsteroidsSplitter> splitterLoader =
-                ServiceLoader.load(dk.sdu.cbse.common.asteroids.IAsteroidsSplitter.class);
-        dk.sdu.cbse.common.asteroids.IAsteroidsSplitter splitter =
-                splitterLoader.findFirst().orElseThrow(() -> new RuntimeException("No AsteroidsSplitter found"));
-
-        if (collisionDetector != null) {
-            collisionDetector.setAsteroidsSplitter(splitter);
-        }
         // Lookup all Game Plugins using ServiceLoader
         for (IGamePluginService iGamePlugin : getPluginServices()) {
             iGamePlugin.start(gameData, world);
