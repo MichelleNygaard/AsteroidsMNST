@@ -1,70 +1,53 @@
 package dk.sdu.cbse.common.data;
 
+import dk.sdu.cbse.common.entattributes.EntAttribute;
+
 import java.io.Serializable;
+import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class Entity implements Serializable {
 
     private final UUID ID = UUID.randomUUID();
 
-    private double[] polygonCoordinates;
-    private double x;
-    private double y;
-    private double rotation;
+    private float[] shapeX = new float[4];
+    private float[] shapeY = new float[4];
     private float radius;
-//    private String OwnerID;
+    private Map<Class, EntAttribute> parts;
 
 
-    public String getID() {
-        return ID.toString();
+    public Entity() {
+        parts = new ConcurrentHashMap<>();
     }
-
-
-    public void setPolygonCoordinates(double... coordinates ) {
-        this.polygonCoordinates = coordinates;
+    public void add(EntAttribute part) {
+        parts.put(part.getClass(), part);
     }
-
-    public double[] getPolygonCoordinates() {
-        return polygonCoordinates;
+    public void remove(Class partClass) {
+        parts.remove(partClass);
     }
-
-
-    public void setX(double x) {
-        this.x =x;
+    public <E extends EntAttribute> E getPart(Class partClass) {
+        return (E) parts.get(partClass);
     }
-
-    public double getX() {
-        return x;
-    }
-
-
-    public void setY(double y) {
-        this.y = y;
-    }
-
-    public double getY() {
-        return y;
-    }
-
-    public void setRotation(double rotation) {
-        this.rotation = rotation;
-    }
-
-    public double getRotation() {
-        return rotation;
-    }
-
     public void setRadius(float radius) {
         this.radius = radius;
     }
-
     public float getRadius() {
         return this.radius;
     }
-
-//    public String getOwnerID() {return OwnerID;}
-//
-//    public void setOwnerID(String OwnerID) {
-//        this.OwnerID = OwnerID;
-//    }
+    public String getID() {
+        return ID.toString();
+    }
+    public float[] getShapeX(float[] shapeX) {
+        return shapeX;
+    }
+    public float[] getShapeY(float[] shapeY) {
+        return shapeY;
+    }
+    public void setShapeX(float[] shapeX) {
+        this.shapeX = shapeX;
+    }
+    public void setShapeY(float[] shapeY) {
+        this.shapeY = shapeY;
+    }
 }
