@@ -21,6 +21,7 @@
     <module>Player</module>
       <module>Scoring</module>
     <module>Background</module>
+      <module>CommonBackground</module>
   </modules>
   <properties>
     <java>java</java>
