@@ -5,15 +5,14 @@ public class GameKeys {
     private static boolean[] keys;
     private static boolean[] pkeys;
 
-    private static final int NUM_KEYS = 4;
+    private static final int NUM_KEYS = 6;
     public static final int UP = 0;
     public static final int LEFT = 1;
-    public static final int DOWN = 2;
-    public static final int RIGHT = 3;
-    public static final int ENTER = 4;
-    public static final int ESCAPE = 5;
-    public static final int SPACE = 6;
-    public static final int SHIFT = 7;
+    public static final int RIGHT = 2;
+    public static final int SPACE = 3;
+    public static final int Q = 4;
+    public static final int E = 5;
+
 
     public GameKeys() {
         keys = new boolean[NUM_KEYS];
