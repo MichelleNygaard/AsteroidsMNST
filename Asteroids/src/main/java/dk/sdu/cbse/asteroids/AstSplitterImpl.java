@@ -4,68 +4,74 @@ import dk.sdu.cbse.common.asteroids.Asteroids;
 import dk.sdu.cbse.common.asteroids.IAsteroidsSplitter;
 import dk.sdu.cbse.common.data.Entity;
 import dk.sdu.cbse.common.data.World;
-import dk.sdu.cbse.common.data.entattributes.EntMovement;
-import dk.sdu.cbse.common.data.entattributes.EntPosition;
-import dk.sdu.cbse.common.data.entattributes.HPAttribute;
-import static java.lang.Math.cos;
-import static java.lang.Math.sin;
+import dk.sdu.cbse.common.data.GameData;
+
+import java.util.Random;
+
 
 public class AstSplitterImpl implements IAsteroidsSplitter {
 
 
     @Override
     public void createSplitAsteroid(Entity e, World world) {
-        EntPosition otherPosi = e.getPart(EntPosition.class);
-        HPAttribute otherHP = e.getPart(HPAttribute.class);
-        float radians = otherPosi.getRadians();
-        int radius = 0;
-        float speed = 5;
-        int hp = otherHP.getHp() - 1;
-        if (hp == 1 ) {
-            radius = 6;
-            speed = (float) Math.random() * 30f + 70f;
-        } else if (hp == 2) {
-            radius = 10;
-            speed = (float) Math.random() * 10f + 50f;
-        }else if (hp <= 0) {
-            world.removeEntity(e);
-            return;
+        System.out.println(e.getHealthPoints());
+
+        if (e.getHealthpoints() == 1) {
+            if (e.getPolygonCoordinates()[0] <= 8) {
+                world.removeEntity(e);
+                // Updates the score if the ScorePlugin exists
+                if (getScoreImpl() != null) {
+                    getScoreImpl().addScore(5);
+                    getScoreImpl().updateScore(gameData);
+                }
+            } else {
+                Asteroids splitAsteroid1 = initializeSplitAsteroid(e);
+                splitAsteroid1.setX(e.getX() - splitAsteroid1.getRadius() - 1);
+                splitAsteroid1.setY(e.getY() - splitAsteroid1.getRadius() - 1);
+
+                Asteroid splitAsteroid2 = initializeSplitAsteroid(e);
+                splitAsteroid2.setX(e.getX() - splitAsteroid2.getRadius() + 1);
+                splitAsteroid2.setY(e.getY() - splitAsteroid2.getRadius() + 1);
+
+                world.addEntity(splitAsteroid1);
+                world.addEntity(splitAsteroid2);
+
+                world.removeEntity(e);
+                // Update score if ScorePlugin exists
+                if (getScoreImpl() != null) {
+                    getScoreImpl().addScore(10);
+                    getScoreImpl().updateScore(gameData);
+                }
+            }
+        } else {
+            e.setHealthPoints(e.getHealthPoints() - 1);
         }
-
-        // Definition of the two new smaller asteroids
-        // 1st new asteroid
-        Entity ast1 = new Asteroids();
-        ast1.setRadius(radius);
-        float radians1 = radians * 0.5f;
-
-        float ay1 = (float) sin(radians1) * e.getRadius() * ast1.getRadius();
-        float ax1 = (float) cos(radians1) * e.getRadius() * ast1.getRadius();
-
-        EntPosition astPos1st = new EntPosition(otherPosi.getX() + ax1, otherPosi.getY()
-                + ay1, radians1);
-        ast1.add(new EntMovement(0, 5000, speed, 0));
-        ast1.add(astPos1st);
-        ast1.add(new HPAttribute(hp));
-
-        world.addEntity(ast1);
-
-        // 2nd new asteroid
-        Entity ast2 = new Asteroids();
-        ast2.setRadius(radius);
-        float radians2 = radians * 0.5f;
-
-        float ay2 = (float) cos(radians2) * e.getRadius() * ast2.getRadius();
-        float ax2 = (float) cos(radians2) * e.getRadius() * ast2.getRadius();
-
-        EntPosition astPos2nd = new EntPosition(otherPosi.getX() + ax2, otherPosi.getY()
-                + ay2, radians2);
-        ast2.add(new EntMovement(0, 5000, speed, 0));
-        ast2.add(astPos2nd);
-        ast2.add(new HPAttribute(hp));
-
-        world.addEntity(ast2);
-
-        world.removeEntity(e);
     }
 
+    private Asteroids initializeSplitAsteroid(Entity e) {
+        Asteroids asteroid = new Asteroids();
+        Random rnd = new Random();
+
+        double[] splitAsteroidPolygonCoords = e.getPolygonCoordinates();
+        for (int i = 0; i < e.getPolygonCoordinates().length; i++) {
+            e.getPolygonCoordinates()[i] = e.getPolygonCoordinates()[i] * 0.8;
+        }
+
+        asteroid.setPolygonCoordinates(splitAsteroidPolygonCoords);
+        asteroid.setRadius((float) splitAsteroidPolygonCoords[0]);
+
+        asteroid.setRotation(rnd.nextInt(90));
+        asteroid.setHealthPoints(rnd.nextInt(2, 4));
+
+        return asteroid;
+    }
+
+    public IScoringSystem getScoreImpl() {
+        if (ServiceLoader.load(IScoringSystem.class).stream().map(ServiceLoader.Provider::get).findFirst().isPresent()) {
+            return ServiceLoader.load(IScoringSystem.class).stream().map(ServiceLoader.Provider::get).findFirst().get();
+        } else {
+            return null;
+        }
+    }
 }
+
