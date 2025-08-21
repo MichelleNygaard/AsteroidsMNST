@@ -15,9 +15,14 @@ public class AstPlugin implements IGamePluginService {
 
     @Override
     public void start(GameData gameData, World world) {
-        // Adds asteroid entities to the world
-        Entity asteroid = createAsteroid(gameData);
-        world.addEntity(asteroid);
+        Random rnd = new Random();
+        for(int i = 0; i< rnd.nextInt(2,10); i++) {
+            // Adds asteroid entities to the world
+            Entity asteroid = createAsteroid(gameData);
+            asteroid.setHealthPoints(rnd.nextInt(2,4));
+            world.addEntity(asteroid);
+        }
+
     }
 
     @Override
@@ -29,15 +34,17 @@ public class AstPlugin implements IGamePluginService {
     }
 
     private Entity createAsteroid(GameData gameData) {
-        Entity asteroid = new Asteroids();
-        float radians = (float) Math.random() * 2 * 3.1415f;
-        float speed = (float) Math.random() * 10f + 20f;
+        Asteroids asteroid = new Asteroids();
+        Random rnd = new Random();
 
-        //Set the size of asteroids
-        asteroid.setRadius(20);
-        asteroid.add(new EntMovement(0, speed, speed, 0));
-        asteroid.add(new EntPosition(30, 30, radians));
-        asteroid.add(new HPAttribute(3));
+        //Set the size and placement of asteroids
+        int size = rnd.nextInt(15) + 8;
+        asteroid.setPolygonCoordinates(size, -size, -size, -size, -size, size, size, size);
+        asteroid.setX(rnd.nextInt(0, gameData.getDisplayWidth()));
+        asteroid.setY(rnd.nextInt(0, gameData.getDisplayHeight()));
+        asteroid.setRadius(size);
+        asteroid.setRotation(rnd.nextInt(90));
+        asteroid.setHealthPoints(rnd.nextInt(1,4));
         return asteroid;
     }
 }
