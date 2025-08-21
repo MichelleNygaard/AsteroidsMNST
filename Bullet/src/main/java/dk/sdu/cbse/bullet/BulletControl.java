@@ -11,17 +11,14 @@ public class BulletControl implements IEntityProcessingService, BulletSPI {
 
     @Override
     public void process(GameData gameData, World world) {
-
-        float screenWidth = gameData.getDisplayWidth();
-        float screenHeight = gameData.getDisplayHeight();
-
         for (Entity bullet : world.getEntities(Bullets.class)) {
             double changeX = Math.cos(Math.toRadians(bullet.getRotation()));
             double changeY = Math.sin(Math.toRadians(bullet.getRotation()));
             bullet.setX(bullet.getX() + changeX * 6);
             bullet.setY(bullet.getY() + changeY * 6);
 
-            if( bullet.getX() < 0 || bullet.getX() > screenWidth || bullet.getY() < 0 || bullet.getY() > screenHeight) {
+            if( bullet.getX() > gameData.getDisplayWidth() || bullet.getX() < 0
+                    || bullet.getY() > gameData.getDisplayHeight() || bullet.getY() < 0) {
                 world.removeEntity(bullet);
             }
         }
@@ -37,8 +34,6 @@ public class BulletControl implements IEntityProcessingService, BulletSPI {
         bullet.setY(shooter.getY() + changeY * 10);
         bullet.setRotation(shooter.getRotation());
         bullet.setRadius(1);
-
-//        bullet.setOwnerID(shooter.getID());
 
         return bullet;
     }

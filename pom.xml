@@ -20,6 +20,7 @@
     <module>Enemy</module>
     <module>Player</module>
       <module>Scoring</module>
+    <module>Background</module>
   </modules>
   <properties>
     <java>java</java>
