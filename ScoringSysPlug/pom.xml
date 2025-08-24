@@ -7,11 +7,11 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>dk.sdu.cbse.asteroids</groupId>
-    <artifactId>Asteroids</artifactId>
+    <groupId>dk.anfra22.cbse.scoringsystemplugin</groupId>
+    <artifactId>ScoringSystemPlugin</artifactId>
     <packaging>jar</packaging>
 
-    <name>Asteroids</name>
+    <name>ScoringSystemPlugin</name>
     <url>http://maven.apache.org</url>
 
     <properties>
@@ -20,22 +20,28 @@
 
     <dependencies>
         <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>dk.sdu.cbse.common</groupId>
             <artifactId>Common</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
-        <dependency>
-            <groupId>dk.sdu.cbse.common.asteroids</groupId>
-            <artifactId>CommonAsteroids</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>dk.sdu.cbse.scoringsysplug</groupId>
-            <artifactId>ScoringSysPlug</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
     </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>11</source>
+                    <target>11</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

@@ -21,6 +21,8 @@
       <module>Scoring</module>
     <module>Background</module>
       <module>CommonBackground</module>
+    <module>Scoring</module>
+    <module>ScoringSysPlug</module>
   </modules>
   <properties>
     <java>java</java>

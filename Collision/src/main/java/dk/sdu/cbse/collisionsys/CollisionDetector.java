@@ -21,12 +21,12 @@ public class CollisionDetector implements IPostEntityProcessingService {
     }
 
     @Override
-    public void process(GameData gameData, World world) throws IOException, URISyntaxException, InterruptedException {
+    public void process(GameData gameData, World world) {
         for (Entity entity1 : world.getEntities()) {
             for (Entity entity2 : world.getEntities()) {
 
                 //Check if the two entities are identical, and skips if they are
-                if (entity1.getId().equals(entity2.getID())) {
+                if (entity1.getID().equals(entity2.getID())) {
                     continue;
                 }
 

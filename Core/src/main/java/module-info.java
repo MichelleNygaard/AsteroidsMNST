@@ -3,11 +3,14 @@ module Core {
     requires CommonBullet;
     requires CommonBackground;
     requires javafx.graphics;
-    requires javafx.controls;
+    requires spring.core;
+    requires spring.beans;
     requires spring.context;
     opens dk.sdu.cbse to javafx.graphics;
     uses dk.sdu.cbse.common.services.IGamePluginService;
     uses dk.sdu.cbse.common.services.IEntityProcessingService;
     uses dk.sdu.cbse.common.services.IPostEntityProcessingService;
+    uses dk.sdu.cbse.BackgroundSPI;
+
     exports dk.sdu.cbse;
 }

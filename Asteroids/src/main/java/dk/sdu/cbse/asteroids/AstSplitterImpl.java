@@ -5,15 +5,19 @@ import dk.sdu.cbse.common.asteroids.IAsteroidsSplitter;
 import dk.sdu.cbse.common.data.Entity;
 import dk.sdu.cbse.common.data.World;
 import dk.sdu.cbse.common.data.GameData;
+import dk.sdu.cbse.scoringsysplug.IScoringSystem;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.Random;
+import java.util.ServiceLoader;
 
 
 public class AstSplitterImpl implements IAsteroidsSplitter {
 
 
     @Override
-    public void createSplitAsteroid(Entity e, World world) {
+    public void createSplitAsteroid(Entity e, World world, GameData gameData) throws IOException, URISyntaxException, InterruptedException {
         System.out.println(e.getHealthPoints());
 
         if (e.getHealthpoints() == 1) {
@@ -29,7 +33,7 @@ public class AstSplitterImpl implements IAsteroidsSplitter {
                 splitAsteroid1.setX(e.getX() - splitAsteroid1.getRadius() - 1);
                 splitAsteroid1.setY(e.getY() - splitAsteroid1.getRadius() - 1);
 
-                Asteroid splitAsteroid2 = initializeSplitAsteroid(e);
+                Asteroids splitAsteroid2 = initializeSplitAsteroid(e);
                 splitAsteroid2.setX(e.getX() - splitAsteroid2.getRadius() + 1);
                 splitAsteroid2.setY(e.getY() - splitAsteroid2.getRadius() + 1);
 

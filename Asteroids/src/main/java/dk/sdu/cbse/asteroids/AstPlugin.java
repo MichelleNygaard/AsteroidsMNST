@@ -6,9 +6,6 @@ import dk.sdu.cbse.common.data.GameData;
 import dk.sdu.cbse.common.data.World;
 import dk.sdu.cbse.common.services.IGamePluginService;
 import java.util.Random;
-import dk.sdu.cbse.common.data.entattributes.HPAttribute;
-import dk.sdu.cbse.common.data.entattributes.EntMovement;
-import dk.sdu.cbse.common.data.entattributes.EntPosition;
 
 
 public class AstPlugin implements IGamePluginService {

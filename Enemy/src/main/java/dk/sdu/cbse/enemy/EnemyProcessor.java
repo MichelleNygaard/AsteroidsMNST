@@ -15,15 +15,9 @@ public class EnemyProcessor implements IEntityProcessingService {
 
     @Override
     public void process(GameData gameData, World world) {
+        Entity player = world.getEntities(Player.class).stream().findFirst().orElse(null);
 // Specifies the movement of the enemy ship, to follow after the player.
         for (Entity enemy : world.getEntities(Enemy.class)) {
-//            double changeX = Math.cos(Math.toRadians(enemy.getRotation()));
-//            double changeY = Math.sin(Math.toRadians(enemy.getRotation()));
-//
-//            enemy.setX(enemy.getX() + changeX * 0.5);
-//            enemy.setY(enemy.getY() + changeY * 0.5);
-
-            Entity player = world.getEntities(Player.class).stream().findFirst().orElse(null);
             if (player != null) {
                 double deltaX = player.getX() - enemy.getX();
                 double deltaY = player.getY() - enemy.getY();
