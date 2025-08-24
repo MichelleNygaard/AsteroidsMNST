@@ -1,4 +1,4 @@
-package dk.sdu.cbse;
+package dk.sdu.background;
 
 public class Background {
 }

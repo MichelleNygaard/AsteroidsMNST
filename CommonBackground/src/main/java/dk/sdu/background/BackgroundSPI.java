@@ -1,4 +1,4 @@
-package dk.sdu.cbse;
+package dk.sdu.background;
 
 import dk.sdu.cbse.common.data.GameData;
 
