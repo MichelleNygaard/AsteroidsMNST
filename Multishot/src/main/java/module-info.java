@@ -1,3 +1,5 @@
+import dk.sdu.cbse.common.weapon.WeaponSPI;
+
 module Multishot {
     requires Common;
     requires CommonBullet;

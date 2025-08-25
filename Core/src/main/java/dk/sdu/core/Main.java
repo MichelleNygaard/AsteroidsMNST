@@ -24,7 +24,7 @@ public class Main extends Application {
 
         List<SplitProvider> splitProviders = SplitProviderLocator.INSTANCE.locateAll(SplitProvider.class);
         for (SplitProvider splitProvider : splitProviders) {
-            System.out.println("Loaded provider: " + splitProvider.helloProvder());
+            System.out.println("Loaded provider: " + splitProvider.helloProvider());
         }
 
         Logic logic = context.getBean(Logic.class);

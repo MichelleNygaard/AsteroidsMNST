@@ -9,10 +9,10 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>dk.anfra22.cbse.scoringsystem</groupId>
-    <artifactId>ScoringSystem</artifactId>
+    <groupId>dk.sdu.cbse.scoring</groupId>
+    <artifactId>ScoringSys</artifactId>
     <packaging>jar</packaging>
-    <name>ScoringSystem</name>
+    <name>ScoringSys</name>
     <url>http://maven.apache.org</url>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
