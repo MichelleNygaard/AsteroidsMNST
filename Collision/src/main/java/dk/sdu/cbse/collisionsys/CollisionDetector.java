@@ -13,7 +13,7 @@ import java.net.URISyntaxException;
 import java.util.ServiceLoader;
 
 public class CollisionDetector implements IPostEntityProcessingService {
-    private final IAsteroidsSplitter asteroidSplitter = ServiceLoader.load(IAsteroidSplitter.class)
+    private final IAsteroidsSplitter asteroidSplitter = ServiceLoader.load(IAsteroidsSplitter.class)
             .findFirst()
             .orElseThrow(() -> new IllegalArgumentException("Can't find IAsteroidSplitter implementation"));
 
@@ -21,7 +21,7 @@ public class CollisionDetector implements IPostEntityProcessingService {
     }
 
     @Override
-    public void process(GameData gameData, World world) {
+    public void process(GameData gameData, World world) throws IOException, URISyntaxException, InterruptedException {
         for (Entity entity1 : world.getEntities()) {
             for (Entity entity2 : world.getEntities()) {
 
@@ -54,8 +54,8 @@ public class CollisionDetector implements IPostEntityProcessingService {
     }
 
     public Boolean collides(Entity entity1, Entity entity2) {
-        float dx = (float) entity1.getX - (float) entity2.getX();
-        float dy = (float) entity1.getY - (float) entity2.getY();
+        float dx = (float) entity1.getX() - (float) entity2.getX();
+        float dy = (float) entity1.getY() - (float) entity2.getY();
         float distance = (float) Math.sqrt(dx * dx + dy * dy);
         return distance < (entity1.getRadius() + entity2.getRadius());
     }

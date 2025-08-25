@@ -4,6 +4,8 @@ import dk.sdu.cbse.common.services.IGamePluginService;
 module Enemy {
     requires Common;
     requires Player;
+    requires CommonBullet;
+    requires CommonEnemy;
     provides IGamePluginService with dk.sdu.cbse.enemy.EnemyPlugin;
     provides IEntityProcessingService with dk.sdu.cbse.enemy.EnemyProcessor;
 

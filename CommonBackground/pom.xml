@@ -6,7 +6,7 @@
         <groupId>dk.sdu.cbse</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <groupId>dk.sdu.cbse.background</groupId>
+    <groupId>dk.sdu.background</groupId>
     <artifactId>CommonBackground</artifactId>
     <version>1.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>

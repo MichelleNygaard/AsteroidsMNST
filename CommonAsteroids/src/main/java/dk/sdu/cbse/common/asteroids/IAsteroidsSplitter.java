@@ -8,7 +8,5 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 
 public interface IAsteroidsSplitter {
-    void createSplitAsteroid(Entity e, World w) throws IOException, URISyntaxException, InterruptedException;
-
     void createSplitAsteroid(Entity e, World world, GameData gameData) throws IOException, URISyntaxException, InterruptedException;
 }

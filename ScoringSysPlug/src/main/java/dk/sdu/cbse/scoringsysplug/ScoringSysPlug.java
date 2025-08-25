@@ -41,7 +41,7 @@ public class ScoringSysPlug implements IGamePluginService, IScoringSystem{
     }
 
     @Override
-    public void updateScore(GameData gameData, World world) throws URISyntaxException, IOException, InterruptedException {
+    public void updateScore(GameData gameData) throws URISyntaxException, IOException, InterruptedException {
         for (Node node : gameData.getGameWindow().getChildren()) {
             String nodeId = node.getId();
             if ("playerScoreText".equals(nodeId)) {
@@ -65,7 +65,7 @@ public class ScoringSysPlug implements IGamePluginService, IScoringSystem{
     public void addScore(int addPoints) throws IOException, InterruptedException {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(baseURL + "/addPoints?points=" + addPoints))
-                .PUT(HttpRequest.BodyPublisher.noBody())
+                .PUT(HttpRequest.BodyPublishers.noBody())
                 .header("Content-Type", "application/json")
                 .build();
         client.send(request, HttpResponse.BodyHandlers.ofString());

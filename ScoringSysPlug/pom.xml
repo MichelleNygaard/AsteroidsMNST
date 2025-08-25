@@ -7,11 +7,11 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>dk.anfra22.cbse.scoringsystemplugin</groupId>
-    <artifactId>ScoringSystemPlugin</artifactId>
+    <groupId>dk.sdu.cbse.scoringsysplug</groupId>
+    <artifactId>ScoringSysPlug</artifactId>
     <packaging>jar</packaging>
 
-    <name>ScoringSystemPlugin</name>
+    <name>ScoringSysplug</name>
     <url>http://maven.apache.org</url>
 
     <properties>

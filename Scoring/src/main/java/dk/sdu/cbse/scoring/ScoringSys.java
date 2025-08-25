@@ -1,7 +1,11 @@
 package dk.sdu.cbse.scoring;
 
 import org.springframework.boot.SpringApplication;
-
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
 @RestController
@@ -12,7 +16,7 @@ public class ScoringSys {
     }
 
     @PutMapping("/addPoints")
-    public void calcScore(@RequestParam(value = "points", defaultView = "0") int points) {
+    public void calcScore(@RequestParam(value = "points", defaultValue = "0") int points) {
         playerScore += points;
     }
 

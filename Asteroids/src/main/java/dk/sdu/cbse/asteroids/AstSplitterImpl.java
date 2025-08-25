@@ -15,12 +15,11 @@ import java.util.ServiceLoader;
 
 public class AstSplitterImpl implements IAsteroidsSplitter {
 
-
     @Override
     public void createSplitAsteroid(Entity e, World world, GameData gameData) throws IOException, URISyntaxException, InterruptedException {
         System.out.println(e.getHealthPoints());
 
-        if (e.getHealthpoints() == 1) {
+        if (e.getHealthPoints() == 1) {
             if (e.getPolygonCoordinates()[0] <= 8) {
                 world.removeEntity(e);
                 // Updates the score if the ScorePlugin exists

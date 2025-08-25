@@ -1,11 +1,12 @@
 package dk.sdu.cbse;
 
+import dk.sdu.background.BackgroundSPI;
 import dk.sdu.cbse.common.data.GameData;
 import dk.sdu.cbse.common.data.World;
-import dk.sdu.cbse.common.services.IGamePluginService
+import dk.sdu.cbse.common.services.IGamePluginService;
 
 import javax.swing.text.Element;
-import javax.swing.text.html.ImageView;
+import javafx.scene.image.ImageView;
 import javafx.scene.image.Image;
 import dk.sdu.cbse.BackgroundPlug;
 import org.springframework.stereotype.Component;
@@ -27,7 +28,7 @@ public class BackgroundPlug implements IGamePluginService, BackgroundSPI {
 
     @Override
     public ImageView getBackground(GameData gameData) {
-        view = new ImageView((Element) new Image(this.getClass().getResource("/images/spacebackground.png").toString()));
+        view = new ImageView(new Image(this.getClass().getResource("/images/spacebackground.png").toString()));
         view.setFitHeight(gameData.getDisplayHeight());
         view.setFitWidth(gameData.getDisplayWidth());
         return view;
