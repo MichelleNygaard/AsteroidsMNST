@@ -10,9 +10,9 @@
     </parent>
 
     <groupId>dk.sdu.cbse.scoring</groupId>
-    <artifactId>ScoringSys</artifactId>
+    <artifactId>Scoring</artifactId>
     <packaging>jar</packaging>
-    <name>ScoringSys</name>
+    <name>Scoring</name>
     <url>http://maven.apache.org</url>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

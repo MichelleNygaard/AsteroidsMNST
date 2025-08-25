@@ -8,33 +8,37 @@ import dk.sdu.cbse.common.services.IGamePluginService;
 import java.util.Random;
 
 public class EnemyPlugin implements IGamePluginService {
+
+
     private Entity enemy;
+
     public EnemyPlugin() {
     }
 
     @Override
     public void start(GameData gameData, World world) {
-        Entity enemy = createEnemyShip(gameData);
+
+        // Add entities to the world
+        enemy = createEnemyShip(gameData, world);
         world.addEntity(enemy);
     }
 
+    private Entity createEnemyShip(GameData gameData, World world) {
 
-    // Creates an enermy ship at a random location with a random size.
-    private Entity createEnemyShip(GameData gameData) {
         Entity enemyShip = new Enemy();
-        Random rnd = new Random();
-        int size = rnd.nextInt(6) + 4;
-        enemyShip.setPolygonCoordinates(-size, -size, size, size, -size, size);
-        enemyShip.setX(rnd.nextInt(gameData.getDisplayWidth()));
-        enemyShip.setY(rnd.nextInt(gameData.getDisplayHeight()));
-        enemyShip.setRadius(15);
-        enemyShip.setRotation(rnd.nextInt(90));
-
+        Random random = new Random();
+        enemyShip.setPolygonCoordinates(-10,-10,15,0,-10,10);
+        enemyShip.setX(random.nextInt(gameData.getDisplayHeight()));
+        enemyShip.setY(random.nextInt(gameData.getDisplayWidth()));
+        enemyShip.setRadius(10);
+        enemyShip.setColor("RED");
         return enemyShip;
     }
+
     @Override
     public void stop(GameData gameData, World world) {
         // Remove entities
-            world.removeEntity(enemy);
+        world.removeEntity(enemy);
     }
+
 }
