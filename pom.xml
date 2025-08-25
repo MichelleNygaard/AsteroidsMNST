@@ -28,6 +28,11 @@
     <module>CommonBackground</module>
     <module>Scoring</module>
     <module>ScoringSysPlug</module>
+      <module>Canon</module>
+    <module>CommonWeapon</module>
+      <module>Multishot</module>
+    <module>SingleShot</module>
+    <module>SplitProvider</module>
   </modules>
   <dependencyManagement>
     <dependencies>

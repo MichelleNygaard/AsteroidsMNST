@@ -7,6 +7,6 @@ module Background {
     requires spring.context;
     requires javafx.graphics;
     requires java.desktop;
-    provides BackgroundPlug with BackgroundPlug;
+    provides dk.sdu.cbse.BackgroundPlug with dk.sdu.cbse.BackgroundPlug;
     exports dk.sdu.cbse;
 }

@@ -4,7 +4,7 @@ import dk.sdu.cbse.common.services.IGamePluginService;
 
 module Asteroids {
     uses IGamePluginService;
-    uses dk.sdu.cbse.scoringsysplug.ScoringSysPlug;
+    uses dk.sdu.cbse.scoringsysplug.IScoringSystem;
     requires Common;
     requires CommonAsteroids;
     requires ScoringSysPlug;
