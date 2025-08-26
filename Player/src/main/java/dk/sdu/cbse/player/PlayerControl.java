@@ -56,7 +56,9 @@ public class PlayerControl implements IEntityProcessingService {
                     }
                     bulletCooldown = 10;
                 }
-                bulletCooldown-=1;
+                if (bulletCooldown > 0) {
+                    bulletCooldown--;
+                }
             }
 
             if (player.getX() < 0) {

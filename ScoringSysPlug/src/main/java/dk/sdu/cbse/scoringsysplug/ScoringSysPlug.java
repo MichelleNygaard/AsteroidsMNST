@@ -42,12 +42,19 @@ public class ScoringSysPlug implements IGamePluginService, IScoringSystem{
 
     @Override
     public void updateScore(GameData gameData) throws URISyntaxException, IOException, InterruptedException {
-        for (Node node : gameData.getGameWindow().getChildren()) {
-            String nodeId = node.getId();
-            if ("playerScoreText".equals(nodeId)) {
-                Text currentWeaponText = (Text) node;
-                currentWeaponText.setText("Player Score: " + getPlayerScore());
+        try {
+            int newScore = getPlayerScore();
+            for (Node node : gameData.getGameWindow().getChildren()) {
+                String nodeId = node.getId();
+                if ("playerScoreText".equals(nodeId)) {
+                    Text currentScoreText = (Text) node;
+                    currentScoreText.setText("Player Score: " + newScore);
+                    break;
+                }
             }
+        } catch (Exception e) {
+            // If scoring service is not available, just continue
+            System.err.println("Could not update score: " + e.getMessage());
         }
     }
 
@@ -63,11 +70,16 @@ public class ScoringSysPlug implements IGamePluginService, IScoringSystem{
 
     @Override
     public void addScore(int addPoints) throws IOException, InterruptedException {
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(baseURL + "/addPoints?points=" + addPoints))
-                .PUT(HttpRequest.BodyPublishers.noBody())
-                .header("Content-Type", "application/json")
-                .build();
-        client.send(request, HttpResponse.BodyHandlers.ofString());
+        try {
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(baseURL + "/addPoints?points=" + addPoints))
+                    .PUT(HttpRequest.BodyPublishers.noBody())
+                    .header("Content-Type", "application/json")
+                    .build();
+            client.send(request, HttpResponse.BodyHandlers.ofString());
+        } catch (Exception e) {
+            // If scoring service is not available, just continue
+            System.err.println("Scoring service unavailable: " + e.getMessage());
+        }
     }
 }
