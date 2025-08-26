@@ -12,6 +12,8 @@ module Core {
     uses dk.sdu.cbse.common.services.IPostEntityProcessingService;
     uses dk.sdu.cbse.common.services.IGameDataProcessingService;
     uses dk.sdu.background.BackgroundSPI;
+    uses dk.sdu.cbse.common.bullet.BulletSPI;
+    uses dk.sdu.cbse.common.services.SplitProvider;
 
     exports dk.sdu.core;
 }

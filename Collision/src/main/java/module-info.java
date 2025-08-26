@@ -7,6 +7,6 @@ module Collision {
     requires CommonAsteroids;
     requires CommonBullet;
     provides IPostEntityProcessingService with dk.sdu.cbse.collisionsys.CollisionDetector;
-    uses IAsteroidsSplitter;
+    uses dk.sdu.cbse.common.asteroids.IAsteroidsSplitter;
     exports dk.sdu.cbse.collisionsys;
 }

@@ -133,6 +133,8 @@ v4_0_0.xsd">
             <argument>-Djava.library.path=libs</argument>
             <argument>--module-path=mods-mvn</argument>
             <argument>--class-path=libs/*</argument>
+            <argument>--add-modules</argument>
+            <argument>ALL-SYSTEM</argument>
             <!-- because spark.core is an automatic module and actually required,
             monitor.observer.zero would be resolved as well and does not need
             to be added explicitly;
