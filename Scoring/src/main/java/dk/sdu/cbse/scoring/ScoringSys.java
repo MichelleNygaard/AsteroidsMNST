@@ -13,6 +13,7 @@ public class ScoringSys {
     private int playerScore = 0;
 
     public static void main(String[] args) {
+        SpringApplication.run(ScoringSys.class, args);
     }
 
     @PutMapping("/addPoints")
