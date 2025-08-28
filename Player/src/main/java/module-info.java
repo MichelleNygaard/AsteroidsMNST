@@ -12,5 +12,4 @@ module Player {
     uses IGamePluginService;
     provides IGamePluginService with dk.sdu.cbse.player.PlayerPlugin;
     provides IEntityProcessingService with dk.sdu.cbse.player.PlayerControl;
-
 }

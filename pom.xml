@@ -27,7 +27,6 @@ v4_0_0.xsd">
     <module>Enemy</module>
     <module>Collision</module>
     <module>CommonWeapon</module>
-    <module>Multishot</module>
     <module>Singleshot</module>
     <module>Canon</module>
     <module>splitprovider</module>
